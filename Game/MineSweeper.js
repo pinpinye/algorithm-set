@@ -104,7 +104,6 @@ mineSweeper.prototype = {
 						}
 					})
 					this.rowArr[i][j] = boomNum;
-					// this.rowArr[i][j] = leftTop+toTop+rightTop+toLeft+toRight+leftBottom+rightBottom+toBottom;
 				}
 
 			}
