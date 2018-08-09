@@ -23,13 +23,11 @@ mineSweeper.prototype = {
 		for(let t=0; t<k; t++) {
 			let row = Math.floor(Math.random(0,1)*m);
 			let col = Math.floor(Math.random(0,1)*n);
-			console.log(row,col)
 			if(this.rowArr[row][col] == 0) {
-				this.rowArr[row][col] = 1
+				this.rowArr[row][col] = "boom";
 			}else{
 				k=k+1;
 			}
-			t++;
 		}
 		this.rowArr.forEach(item => {
 			item.forEach(ceil => {
@@ -48,26 +46,26 @@ mineSweeper.prototype = {
 					// 第一列
 					if(i==0){
 						leftTop =0;
-						toTop = 0;
-						rightTop = 0;
+						toLeft = 0;
+						leftBottom = 0
 					}
 					// 第一行
 					if(j==0) {
 						leftTop =0;
-						toLeft = 0;
-						leftBottom = 0
-					}
-					// 最后一行
-					if(i == this.n-1) {
-						leftBottom = 0;
-						rightBottom = 0;
-						toBottom = 0;
+						toTop = 0;
+						rightTop = 0;
 					}
 					// 最后一列
-					if(j == this.m-1) {
+					if(i == n-1) {
 						rightTop = 0;
 						toRight = 0;
 						rightBottom = 0;
+					}
+					// 最后一行
+					if(j == m-1) {
+						leftBottom = 0;
+						rightBottom = 0;
+						toBottom = 0;
 					}
 
 					if(i>0 && j>0) {
@@ -98,7 +96,15 @@ mineSweeper.prototype = {
 					if(j<n-1) {
 						toBottom = this.rowArr[i][j+1]
 					}
-					this.rowArr[i][j] = leftTop+toTop+rightTop+toLeft+toRight+leftBottom+rightBottom+toBottom;
+					let arr = [leftTop,toTop,rightTop,toLeft,toRight,leftBottom,rightBottom,toBottom];
+					let boomNum =0;
+					arr.forEach(function(value){
+						if(value=="boom"){
+							boomNum++;
+						}
+					})
+					this.rowArr[i][j] = boomNum;
+					// this.rowArr[i][j] = leftTop+toTop+rightTop+toLeft+toRight+leftBottom+rightBottom+toBottom;
 				}
 
 			}
@@ -112,10 +118,10 @@ mineSweeper.prototype = {
 	}
 }
 
-let my =new mineSweeper(5,5,1);
+let my =new mineSweeper(3,3,1);
 my.generateFrame();
+console.log("-----------------")
 my.fillMine();
-
 
 
 // 2. Fill each none-mine cell with exact number based on the number of mines around it;
