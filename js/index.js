@@ -30,16 +30,15 @@ function add(x) {
 //  create a Function that returns a deepCopy of object
 // 深度拷贝
 function deepCopy(obj,copyObj) {
-	console.log("copyObj",copyObj);
 	if(obj === null) {
-		return null
+		return null;
 	}
 	if(typeof obj == "undefined") {
 		return undefined;
 	}
 
 	let copy = copyObj || { };
-	for(props in obj) {
+	for(let props in obj) {
 		if(typeof obj[props] == "object") {
 			copy[props] = (obj[props].constructor === Array) ? [] : {};
 			deepCopy(obj[props],copy[props]);
