@@ -4,24 +4,23 @@
 // In javascript, when calculate a Object will call valueOf,and console a Object will call toString
 
 function add(x) {
-	let argArr = arguments;
-	let len = argArr.length;
+	let len = arguments.length;
 	let sum = 0;
-	let sumFunction = function(y) {
-			sum = sum + y
-			return sumFunction
-	}
-	sumFunction.toString = function() {
-		return sum;
-	}
 	if(len>1) {
 		for(let i = 0; i<len; i++){
-			sum = sum + argArr[i];
+			sum = sum + arguments[i];
 		}
 		return sum;
 	}else{
 		sum = x;
-		return sumFunction
+		let sumFunction = (y) => {
+			sum = sum + y;
+			return sumFunction;
+		};
+		sumFunction.toString = () => {
+			return sum;
+		};
+		return sumFunction;
 	}
 }
 // console.log(add(1)(2)(3))
