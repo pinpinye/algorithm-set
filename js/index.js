@@ -4,11 +4,12 @@
 // In javascript, when calculate a Object will call valueOf,and console a Object will call toString
 
 function add(x) {
-	let len = arguments.length;
+	let  args = Array.prototype.slice.call(arguments)
+	let len = args.length;
 	let sum = 0;
 	if(len>1) {
 		for(let i = 0; i<len; i++){
-			sum = sum + arguments[i];
+			sum = sum + args[i];
 		}
 		return sum;
 	}else{
