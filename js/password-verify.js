@@ -10,15 +10,12 @@ let countRepeat = function(password ,rule) {
      myDoubleArr = myDoubleArr.concat([ruleToArr]);
     let m = ruleToArr.length;
     let n = passwordToArr.length;
-    row = 1; col = 0;
-    passwordToArr.forEach(item => {
-        myDoubleArr[row] = []
-        myDoubleArr[row][col] = item;
-        row++;
-    })
     // 对比两个字符串是否相同，相同则对应坐标赋值为1
     for(let i = 1 ; i < m+1 ; i++) {
         for (let j = 1 ; j < n+1 ; j++) {
+             // 将矩阵第一列的值替换为用户输入的密码的值
+             myDoubleArr[j][0] = passwordToArr[j-1];
+             // 记录密码命中的规则的位置
             if(myDoubleArr[j][0] === myDoubleArr[0][i] ) {
                 myDoubleArr[j][i] = 1;
                   // 记录连续次数
