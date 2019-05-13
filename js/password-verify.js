@@ -22,7 +22,7 @@ let countRepeat = function(password ,rule) {
             if(myDoubleArr[j][0] === myDoubleArr[0][i] ) {
                 myDoubleArr[j][i] = 1;
                   // 记录连续次数
-                 if (myDoubleArr[j][i] && myDoubleArr[j-1][i-1] && myDoubleArr[j-2][i-2]) {
+                 if (myDoubleArr[j][i] === 1 && myDoubleArr[j-1][i-1] === 1  && myDoubleArr[j-2][i-2] === 1) {
                       count ++ ;
                  }
             } else {
