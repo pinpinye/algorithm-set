@@ -70,7 +70,8 @@ rule2: function() {
              count = 0;
              return false
          }
-     }
+        }
+       }
      },
         baseRule: function(str){
         var pattern = /^[\u0021-\u007E]{6,16}$/;
