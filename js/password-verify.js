@@ -14,7 +14,7 @@ let countRepeat = function(password ,rule) {
     for(let i = 1 ; i < m+1 ; i++) {
         for (let j = 1 ; j < n+1 ; j++) {
              // 将矩阵第一列的值替换为用户输入的密码的值
-             if (i = 1) {
+             if (i === 1) {
                myDoubleArr[j] = [];
                myDoubleArr[j][0] = passwordToArr[j-1];
              }
