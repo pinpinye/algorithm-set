@@ -7,7 +7,7 @@ let countRepeat = function(password ,rule) {
     let myDoubleArr = []
     let ruleToArr = rule.split('');
     let passwordToArr = password.split('');
-     myDoubleArr = myDoubleArr.concat(ruleToArr);
+     myDoubleArr = myDoubleArr.concat([ruleToArr]);
     let m = ruleToArr.length;
     let n = passwordToArr.length;
     row = 1; col = 0;
