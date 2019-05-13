@@ -103,7 +103,7 @@ rule2: function() {
 
                 result = fn.apply(this, [str, str.length]);
 
-                if(result.weak){
+                if(result){
                     return result;
                 }
             }
