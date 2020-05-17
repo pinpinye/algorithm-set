@@ -29,26 +29,21 @@ function add(x) {
 
 //  create a Function that returns a deepCopy of object
 // 深度拷贝
-function deepCopy(obj,copyObj) {
-	if(obj === null) {
-		return null;
+function deepCopy(obj) {
+	if(typeof obj !== 'object' || obj === null) {
+		return obj
 	}
-	if(typeof obj == "undefined") {
-		return undefined;
-	}
+	let copy = obj instanceof Array ? [] : {};
 
-	let copy = copyObj || { };
-	for(let props in obj) {
-		if(typeof obj[props] == "object") {
-			copy[props] = (obj[props].constructor === Array) ? [] : {};
-			deepCopy(obj[props],copy[props]);
-		}else{
-			copy[props] = obj[props];
+	for(let i in obj) {
+		if(obj.hasOwnProperty(i)) {
+			copy[i] = typeof obj[i] !== 'object' ? obj[i] : deepClone(obj[i])
 		}
-
 	}
 	return copy;
+
 }
+
 
 // let a = {b:1,c:{e:3,f:4},t:{a:5}};
 // let b = deepCopy(a);
