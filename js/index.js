@@ -27,6 +27,28 @@ function add(x) {
 // console.log(add(1)(2)(3))
 
 
+const add = (...args) => args.reduce((a, b) => a + b);
+
+// 简化写法
+function currying(func) {
+    const args = [];
+    return function result(...rest) {
+        if (rest.length === 0) {
+          return func(...args);
+        } else {
+          args.push(...rest);
+        	return result;
+        }
+    }
+}
+
+const sum = currying(add);
+
+sum(1,2)(3); // 未真正求值
+sum(4); 		 // 未真正求值
+sum(); 			 // 输出 10
+
+
 //  create a Function that returns a deepCopy of object
 // 深度拷贝
 function deepCopy(obj) {
