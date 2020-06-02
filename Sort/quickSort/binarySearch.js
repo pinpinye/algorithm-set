@@ -1,4 +1,4 @@
-// 循环
+// 循环-- 返回第一个
 var search1 = function(nums, target) {
 
   let low = 0;
@@ -8,6 +8,27 @@ var search1 = function(nums, target) {
     mid = parseInt(low + (high - low) / 2);
     if(nums[mid] === target) {
       return mid;
+    } else if(nums[mid] < target) {
+      low = mid + 1;
+    } else if(nums[mid] > target) {
+      high = mid -1;
+    }
+  } 
+  return -1 
+  
+};
+
+// 循环- 返回最后一个
+var search1 = function(nums, target) {
+  let n = nums.length
+  let low = 0;
+  let high = n -1;
+  let mid;
+  while(low <= high) {
+    mid = parseInt(low + (high - low) / 2);
+    if(nums[mid] === target) {
+      if(mid=== n - 1 || nums[mid+1] > target) return mid;
+      low = mid + 1;
     } else if(nums[mid] < target) {
       low = mid + 1;
     } else if(nums[mid] > target) {
