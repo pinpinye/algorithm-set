@@ -19,7 +19,7 @@ var search1 = function(nums, target) {
 };
 
 // 循环- 返回最后一个
-var search1 = function(nums, target) {
+var search12 = function(nums, target) {
   let n = nums.length
   let low = 0;
   let high = n -1;
