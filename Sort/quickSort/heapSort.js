@@ -1,4 +1,3 @@
-// topk
 /**
  * @param {number[]} arr
  * @param {number} k
@@ -7,26 +6,29 @@
 var smallestK = function(arr, k) {
     if(!arr || arr.length == 0 || k <=0 || k > arr.length) return []; 
     var ret = new Array(); 
-    function comp(a,b){return a > b;}
-    function top(arr){ 
-        var i = Math.floor(arr.length / 2) | 0 ; 
-        for(;i >= 0; i--){ 
-            if(comp(arr[i], arr[i * 2 + 1])){exch(arr, i, i*2 + 1);} 
-            if(comp(arr[i], arr[i * 2])){exch(arr, i, i*2);} 
-        }
-        return arr[0];   
-    } 
-    function exch(arr,i,j){ 
+    var len = arr.length;
+    function swap(arr,i,j){ 
         var t = arr[i]; 
         arr[i] = arr[j]; 
         arr[j] = t; 
     }
-    for(var i = 0;i < k; i++){ 
-        var max = top(arr); 
-        ret.push(max); 
-        arr = arr.slice(1); 
+    function top(arr,sortNum) { 
+        var i = ((len - sortNum) / 2).toFixed(0); 
+        for(;i >= 0; i--){ 
+            if((i * 2 + 1) <= len - 1 - sortNum && arr[i] > arr[i * 2 + 1]){swap(arr, i, i*2 + 1);} 
+            if((i * 2) <= len - 1 - sortNum && arr[i] > arr[i * 2] ){swap(arr, i, i*2);} 
+        }
+        return arr[0];   
     } 
-    return ret; 
+
+    for(var i = 0;i < k; i++) { 
+        var max = top(arr, i); 
+        ret.push(max); 
+        // arr = arr.slice(1); 
+        swap(arr, 0, len - 1 - i);
+    } 
+    // return arr.slice(len - k).reverse(); 
+    return ret
     // return arr.sort((a, b) => a - b).slice(0, k);
     // // 交换数据
     // function swap(arr, index1, index2) {
