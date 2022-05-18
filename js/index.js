@@ -3,20 +3,18 @@
 // create a Function sum, make both sum(1,2,3) and sum(1)(2)(3) equal 6
 // In javascript, when calculate a Object will call valueOf,and console a Object will call toString
 
-function sum(x) {
+function sum() {
     let args = Array.prototype.slice.call(arguments);
-    let total = 0;
-    args.forEach(item => {
-        total = total + item;
-    });
-    let sumFunction = (y) => {
-	total = total + y;
-	return sumFunction;
-     };
-     sumFunction.toString = () => {
-	return total;
-     };
-     return sumFunction;
+	// arguments 不能用箭头函数
+	let addFunc = function() {
+        args.push(...arguments)
+        return addFunc;
+	};
+	// 隐式转换
+	addFunc.toString = function(){
+        return args.reduce(function(x,y){ return x+ y } )
+    }
+	return addFunc;
 }
 
 
