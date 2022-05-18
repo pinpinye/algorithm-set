@@ -3,28 +3,23 @@
 // create a Function sum, make both sum(1,2,3) and sum(1)(2)(3) equal 6
 // In javascript, when calculate a Object will call valueOf,and console a Object will call toString
 
-function add(x) {
-	let  args = Array.prototype.slice.call(arguments)
-	let len = args.length;
-	let sum = 0;
-	if(len>1) {
-		for(let i = 0; i<len; i++){
-			sum = sum + args[i];
-		}
-		return sum;
-	}else{
-		sum = x;
-		let sumFunction = (y) => {
-			sum = sum + y;
-			return sumFunction;
-		};
-		sumFunction.toString = () => {
-			return sum;
-		};
-		return sumFunction;
-	}
+function sum(x) {
+    let args = Array.prototype.slice.call(arguments);
+    let total = 0;
+    args.forEach(item => {
+        total = total + item;
+    });
+    let sumFunction = (y) => {
+	total = total + y;
+	return sumFunction;
+     };
+     sumFunction.toString = () => {
+	return total;
+     };
+     return sumFunction;
 }
-// console.log(add(1)(2)(3))
+
+
 
 
 const add = (...args) => args.reduce((a, b) => a + b);
