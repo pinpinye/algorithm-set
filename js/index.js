@@ -2,7 +2,7 @@
 
 // create a Function sum, make both sum(1,2,3) and sum(1)(2)(3) equal 6
 // In javascript, when calculate a Object will call valueOf,and console a Object will call toString
-
+// 所谓"柯里化"，就是把一个多参数的函数，转化为单参数函数
 function sum() {
     let args = Array.prototype.slice.call(arguments);
 	// arguments 不能用箭头函数
